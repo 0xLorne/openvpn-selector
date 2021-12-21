@@ -1,0 +1,38 @@
+#!/bin/bash
+
+case "$1" in
+
+  '-thm')
+   /usr/bin/figlet THM | /usr/games/lolcat
+   echo -e "\e[94m[*] File used: /home/toropov/.config/thm/vip.ovpn\e[0m"
+    sudo /usr/sbin/openvpn /home/toropov/.config/thm/vip.ovpn
+  ;;
+
+  '-htb')
+   /usr/bin/figlet HTB | /usr/games/lolcat
+   echo -e "\e[94m[*] File used: /home/.config/htb/HTB.ovpn\e[0m"
+   sudo /usr/sbin/openvpn /home/.config/htb/HTB.ovpn
+    ;;
+  '-o')
+   echo -e "\e[94mEnter the PATH of the file:\e[0m"
+   read FILEVPN
+   sudo /usr/sbin/openvpn "$FILEVPN"
+    ;;
+  '--other')
+   echo -e "\e[94mEnter the PATH of the file:\e[0m"
+   read FILEVPN
+   sudo /usr/sbin/openvpn "$FILEVPN"
+   ;;
+  *)
+    echo -e "\e[31m[-] Unknown arguments.\e[0m"
+    echo "[*] Help Menu:"
+    echo ""
+    echo -e "'-thm' Deploy the \e[32mTryHackMe\e[0m openvpn file"
+    echo -e "'-htb' Deploy the \e[32mHacktheBox\e[0m openvpn file"
+    echo -e "'-o'   Deploy the \e[32manother\e[0m openvpn file"
+    echo ""
+    echo "[*] USAGE: vpn <flag>"
+    echo "[*] Examples: "
+    echo "[*] vpn -thm | vpn -o ~/.config/openvpn/otherfile.ovpn"
+    ;;
+esac
